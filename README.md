@@ -26,5 +26,5 @@ BEFORE CONTINUING! Double check that the fan is properly connected to the power 
 No additional programs required.
 
 ---------------------------------------------
-#Upcoming features:
+# Upcoming features:
 Temperature control
