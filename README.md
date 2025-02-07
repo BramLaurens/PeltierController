@@ -10,10 +10,11 @@ VRS1460 motor controller.
 
 Instructions:
 1. Connect controller to USB.
-
-BEFORE CONTINUING! Double check that the fan is properly connected to the power supply on the Roboteq driver.
-
 2. Power on the driver
+
+BEFORE CONTINUING: Double check that the fan is properly connected to the power supply on the Roboteq driver. Also confirm that the fan is spinning! 
+Powering the peltier module without the fan spinning can result in heat damage!
+
 3. Open the program
 4. Select the correct COM port from the drop down menu at the bottom, you might need to refresh the list.
 5. Select cooling or heating mode
