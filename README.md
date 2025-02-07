@@ -1,8 +1,8 @@
 # PeltierController
 -------------------------------------------
-Author: Bram Laurens
-Title: Peltier Controller
-Date: 2025
+Author: Bram Laurens <br />
+Title: Peltier Controller <br />
+Date: 2025 <br />
 
 
 This is a simple self-contained Windows application to control a peltier module connected to a Roboteq
