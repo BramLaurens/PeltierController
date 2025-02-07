@@ -14,8 +14,8 @@ Instructions:
 
 BEFORE CONTINUING: Double check that the fan is properly connected to the power supply on the Roboteq driver. Also confirm that the fan is spinning! 
 Powering the peltier module without the fan spinning can result in heat damage!
-
-3. Open the program
+ 
+3. Open the program "PeltierController.exe", you might get a Windows SmartScreen warning, click "More Information" > then run anyway.
 4. Select the correct COM port from the drop down menu at the bottom, you might need to refresh the list.
 5. Select cooling or heating mode
 6. Enter a PWM value between 0 and 100 for cooling and 0 and 40 for heating in the text field, next to the PWM button. The unit is duty cycle %.
