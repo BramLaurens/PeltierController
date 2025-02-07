@@ -85,7 +85,7 @@
             button1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.Location = new Point(6, 30);
             button1.Name = "button1";
-            button1.Size = new Size(134, 43);
+            button1.Size = new Size(187, 43);
             button1.TabIndex = 2;
             button1.Text = "Reset Peltier";
             button1.UseVisualStyleBackColor = true;
@@ -207,7 +207,7 @@
             // button6
             // 
             button6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button6.Location = new Point(199, 30);
+            button6.Location = new Point(206, 30);
             button6.Name = "button6";
             button6.Size = new Size(114, 43);
             button6.TabIndex = 7;
