@@ -67,31 +67,37 @@ namespace PeltierController
         //Connect COM button click event
         private void button3_Click(object sender, EventArgs e)
         {
-            //Set the Serial port object according to selected comboBox item
-            try
-            {
-                Serial.PortName = comboBox1.Text;
-            }
-            catch 
-            {
-                MessageBox.Show("No COM port selected!");
-            }
-
-            //Set fixed Serial port object arguments 
-            Serial.BaudRate = 9600;
-            Serial.DataBits = 8;
-            Serial.ReceivedBytesThreshold = 1;
-            Serial.StopBits = StopBits.One;
-            Serial.Handshake = Handshake.None;
-            Serial.WriteTimeout = 3000;
 
             //If the serial port is not open yet
             if (false == Serial.IsOpen) 
             {
+                //Set the Serial port object according to selected comboBox item
+                try
+                {
+                    Serial.PortName = comboBox1.Text;
+                }
+                catch
+                {
+                    MessageBox.Show("No COM port selected!");
+                }
+
+                //Set fixed Serial port object arguments 
+                Serial.BaudRate = 9600;
+                Serial.DataBits = 8;
+                Serial.ReceivedBytesThreshold = 1;
+                Serial.StopBits = StopBits.One;
+                Serial.Handshake = Handshake.None;
+                Serial.WriteTimeout = 3000;
+
                 //Open the serial port
                 try 
                 {
                     Serial.Open();
+
+                    //Change button text to disconnect, and disable the combobox & COM ports button
+                    button3.Text = "Disconnect";
+                    comboBox1.Enabled = false;
+                    button2.Enabled = false;
 
                 }
                 catch
@@ -100,13 +106,24 @@ namespace PeltierController
                     return;
                 }
             }
-
-            //If Serial port is open, change button text to disconnect, and disable the combobox & COM ports button
-            if(true == Serial.IsOpen)
+            //If the serial port is already open
+            else
             {
-                button3.Text = "Disconnect";
-                comboBox1.Enabled = false;
-                button2.Enabled = false;
+                //Close the serial port
+                try
+                {
+                    Serial.Close();
+
+                    //Change button text to connect, and enable the combobox & COM ports button
+                    button3.Text = "Connect";
+                    comboBox1.Enabled = true;
+                    button2.Enabled = true;
+                }
+                catch
+                {
+                    MessageBox.Show("Error: Unable to close COM port. Close all applications using this port");
+                    return;
+                }
             }
 
         }
