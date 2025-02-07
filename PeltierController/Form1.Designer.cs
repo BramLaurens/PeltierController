@@ -36,33 +36,41 @@
             comboBox1 = new ComboBox();
             button2 = new Button();
             button3 = new Button();
+            groupBox1 = new GroupBox();
+            groupBox2 = new GroupBox();
+            button4 = new Button();
+            button5 = new Button();
+            label5 = new Label();
+            label6 = new Label();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(21, 20);
+            label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(6, 27);
             label1.Name = "label1";
-            label1.Size = new Size(263, 48);
+            label1.Size = new Size(210, 38);
             label1.TabIndex = 0;
-            label1.Text = "Current mode:";
+            label1.Text = "Current status:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(419, 20);
+            label2.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(222, 27);
             label2.Name = "label2";
-            label2.Size = new Size(115, 48);
+            label2.Size = new Size(91, 38);
             label2.TabIndex = 1;
             label2.Text = "label2";
             // 
             // button1
             // 
-            button1.Location = new Point(21, 185);
+            button1.Location = new Point(6, 30);
             button1.Name = "button1";
-            button1.Size = new Size(164, 43);
+            button1.Size = new Size(201, 43);
             button1.TabIndex = 2;
             button1.Text = "Reset Peltier";
             button1.UseVisualStyleBackColor = true;
@@ -71,20 +79,20 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(21, 68);
+            label3.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(6, 65);
             label3.Name = "label3";
-            label3.Size = new Size(298, 48);
+            label3.Size = new Size(235, 38);
             label3.TabIndex = 3;
             label3.Text = "Controller value:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(419, 68);
+            label4.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(247, 65);
             label4.Name = "label4";
-            label4.Size = new Size(115, 48);
+            label4.Size = new Size(91, 38);
             label4.TabIndex = 4;
             label4.Text = "label4";
             // 
@@ -116,23 +124,89 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(label4);
+            groupBox1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBox1.Location = new Point(21, 12);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(453, 158);
+            groupBox1.TabIndex = 8;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Module status";
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(button5);
+            groupBox2.Controls.Add(button4);
+            groupBox2.Controls.Add(button1);
+            groupBox2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBox2.Location = new Point(21, 192);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(213, 195);
+            groupBox2.TabIndex = 9;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Module controls";
+            // 
+            // button4
+            // 
+            button4.Location = new Point(6, 92);
+            button4.Name = "button4";
+            button4.Size = new Size(201, 43);
+            button4.TabIndex = 3;
+            button4.Text = "Set PWM duty cycle";
+            button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(6, 141);
+            button5.Name = "button5";
+            button5.Size = new Size(201, 43);
+            button5.TabIndex = 4;
+            button5.Text = "Set temperature";
+            button5.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(6, 103);
+            label5.Name = "label5";
+            label5.Size = new Size(228, 38);
+            label5.TabIndex = 5;
+            label5.Text = "Peltier function:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Location = new Point(247, 103);
+            label6.Name = "label6";
+            label6.Size = new Size(91, 38);
+            label6.TabIndex = 6;
+            label6.Text = "label6";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1550, 810);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(comboBox1);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(button1);
-            Controls.Add(label2);
-            Controls.Add(label1);
             Name = "Form1";
             Text = "PeltierController";
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -145,5 +219,11 @@
         private ComboBox comboBox1;
         private Button button2;
         private Button button3;
+        private GroupBox groupBox1;
+        private Label label6;
+        private Label label5;
+        private GroupBox groupBox2;
+        private Button button5;
+        private Button button4;
     }
 }

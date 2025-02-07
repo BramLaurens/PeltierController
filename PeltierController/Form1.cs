@@ -2,13 +2,13 @@ using System.IO;
 using System.IO.Ports;
 
 
-//Peltier controller GUI
+//Title: Peltier controller GUI
 //Author: Bram Laurens
 //February 2025
-//Dit programma heeft als doel het aansturen van een peltier module.
-//De module is aangesloten op een Roboteq Motor Controller.
-//De controller genereert PWM signalen met een duty cycle in promille op basis van
-//seriele commando's in ASCII formaat
+
+//This program controls a peltier module, connected to a Roboteq Motor Controller.
+//The goal of the program is to modulate a PWM signal's duty length through sending serial commands to the controller
+//The serial commands are sent through the COM port / USB in ASCII format
 
 
 namespace PeltierController
@@ -16,7 +16,8 @@ namespace PeltierController
     public partial class Form1 : Form
     {
         //Class variables
-        static bool coolingStatus;
+        static int coolingStatus; //False = cooling, true = heating
+        static bool peltierStatus; //False = turned off, true = power on
         static int peltierOutput;
 
         //Make a new serialport object
@@ -24,8 +25,11 @@ namespace PeltierController
 
         public Form1()
         {
+            //Inititalize labels
             InitializeComponent();
-            label2.Text = "Peltier Disabled";
+
+            //Call the form load eventhandler
+            this.Load += new EventHandler(Form1_Load);
 
         }
 
@@ -47,15 +51,20 @@ namespace PeltierController
         {
             //Call the update COM ports function upon loading the window
             UpdateCOMportList();
+
+            label2.Text = "Peltier Disabled";
+            label6.Text = "Not enabled";
+            label4.Text = peltierOutput.ToString();
         }
 
         //Reset peltier button click event
         private void button1_Click(object sender, EventArgs e)
         {
-            coolingStatus = true;
             peltierOutput = 0;
+            peltierStatus = false;
             label2.Text = "Peltier Disabled";
             label4.Text = peltierOutput.ToString();
+            label6.Text = "Not enabled";
         }
 
         //Refresh COM ports button click event
