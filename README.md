@@ -1,8 +1,9 @@
 # PeltierController
+-------------------------------------------
 Author: Bram Laurens
 Title: Peltier Controller
 Date: 2025
--------------------------------------------
+
 
 This is a simple self-contained Windows application to control a peltier module connected to a Roboteq
 VRS1460 motor controller.
