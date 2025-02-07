@@ -59,9 +59,27 @@ namespace PeltierController
         //Reset peltier button click event
         private void button1_Click(object sender, EventArgs e)
         {
-            peltierStatus = false;
-            label2.Text = "Peltier Disabled";
-            label6.Text = "Not enabled";
+
+            //Check if serial port is open
+            if (Serial.IsOpen)
+            {
+
+
+                //Format ASCII string to selected com port with converted PWM promille value
+                string command = $"!G 1 0_";
+                //Disable watchdog
+                Serial.Write("^RWD 0_");
+                //Send formatted command
+                Serial.Write(command);
+                MessageBox.Show("Sent PWM command: " + command);
+
+                label4.Text = "0";
+                label6.Text = "No PWM";
+                label2.Text = "Powered off";
+
+                coolingStatus = 0;
+                peltierStatus = false;
+            }
         }
 
         //Refresh COM ports button click event
