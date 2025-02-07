@@ -1,8 +1,8 @@
 # PeltierController
 -------------------------------------------
-Author: Bram Laurens /r
-Title: Peltier Controller /r
-Date: 2025 /r
+Author: Bram Laurens
+Title: Peltier Controller
+Date: 2025
 
 
 This is a simple self-contained Windows application to control a peltier module connected to a Roboteq
@@ -24,3 +24,6 @@ BEFORE CONTINUING! Double check that the fan is properly connected to the power 
 
 
 No additional programs required.
+
+Upcoming features:
+Temperature control
