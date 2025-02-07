@@ -23,6 +23,7 @@ Powering the peltier module without the fan spinning can result in heat damage!
 8. Your module should now heat or cool!
 9. Click reset to turn module off (set PWM duty cycle to 0)
 
+Note: it takes 10 minutes for the module to stabilize temperature once given a PWM duty cycle
 
 No additional programs required.
 
