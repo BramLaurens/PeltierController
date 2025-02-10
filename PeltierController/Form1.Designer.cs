@@ -53,6 +53,8 @@
             button4 = new Button();
             groupBox3 = new GroupBox();
             label9 = new Label();
+            label10 = new Label();
+            label11 = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox5.SuspendLayout();
@@ -144,6 +146,8 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label11);
+            groupBox1.Controls.Add(label10);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label1);
@@ -153,7 +157,7 @@
             groupBox1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(21, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(453, 158);
+            groupBox1.Size = new Size(453, 197);
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Module status";
@@ -186,7 +190,7 @@
             groupBox2.Controls.Add(groupBox4);
             groupBox2.Controls.Add(button1);
             groupBox2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox2.Location = new Point(21, 192);
+            groupBox2.Location = new Point(21, 251);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(453, 314);
             groupBox2.TabIndex = 9;
@@ -300,7 +304,7 @@
             groupBox3.Controls.Add(comboBox1);
             groupBox3.Controls.Add(button2);
             groupBox3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox3.Location = new Point(21, 512);
+            groupBox3.Location = new Point(21, 571);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(453, 80);
             groupBox3.TabIndex = 10;
@@ -311,17 +315,37 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(12, 612);
+            label9.Location = new Point(12, 654);
             label9.Name = "label9";
             label9.Size = new Size(295, 21);
             label9.TabIndex = 11;
             label9.Text = "Bram Laurens @ HU 2025 [Open Source]";
             // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.Location = new Point(6, 141);
+            label10.Name = "label10";
+            label10.Size = new Size(236, 38);
+            label10.TabIndex = 7;
+            label10.Text = "Temperature [C]:";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label11.Location = new Point(236, 141);
+            label11.Name = "label11";
+            label11.Size = new Size(106, 38);
+            label11.TabIndex = 8;
+            label11.Text = "label11";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(492, 646);
+            ClientSize = new Size(492, 684);
             Controls.Add(label9);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
@@ -367,5 +391,7 @@
         private Label label9;
         private Button button7;
         private Button button6;
+        private Label label10;
+        private Label label11;
     }
 }

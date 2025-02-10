@@ -1,9 +1,8 @@
 using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
+using System.Runtime.Intrinsics.X86;
 using System.Threading;
-
-
 
 //Title: Peltier controller GUI
 //Author: Bram Laurens
@@ -23,7 +22,23 @@ namespace PeltierController
         static bool peltierStatus; //False = turned off, true = power on
         string dataReceived;
         string dataStripped;
-        int Vntc;
+        int VntcRaw;
+        double Vntc;
+        double Rntc;
+        int Rfixed = 9930;
+        double Tkelvin;
+        double Tcelsius;
+        double A = 2.60 * Math.Pow(10, -3);
+        double B = -5.76 * Math.Pow(10, -6);
+        double C = 1.02 * Math.Pow(10, -6);
+        double Vrfixed;
+        double Vin = 5.063;
+        double Itot;
+        double Intc;
+        double Iimp;
+        int Rimp = 53000;
+        double lnR;
+
 
         //Make a new serialport object
         private SerialPort Serial = new SerialPort();
@@ -170,7 +185,7 @@ namespace PeltierController
         private void button4_Click(object sender, EventArgs e)
         {
             //If no cooling mode selected, return function and give error
-            if(coolingStatus == 0)
+            if (coolingStatus == 0)
             {
                 MessageBox.Show("Please select cooling or heating mode first");
                 return;
@@ -200,7 +215,7 @@ namespace PeltierController
             {
 
                 //Cool if coolingstatus is 2
-                if(coolingStatus == 2)
+                if (coolingStatus == 2)
                 {
                     //Format ASCII string to selected com port with converted PWM promille value
                     string command = $"!G 1 {pwmPromille}_";
@@ -214,10 +229,10 @@ namespace PeltierController
                     label6.Text = "Cooling";
                 }
 
-                if(coolingStatus == 1)
+                if (coolingStatus == 1)
                 {
                     //Check if input is within physical safety limit
-                    if(pwmPromille > 400)
+                    if (pwmPromille > 400)
                     {
                         MessageBox.Show("Selected PWM value too high, module will overheat. Please select a value below 400");
                         return;
@@ -268,13 +283,38 @@ namespace PeltierController
         {
             Debug.WriteLine($"Function executed at {DateTime.Now}");
 
-            if (Serial.IsOpen) {
+            if (Serial.IsOpen)
+            {
                 Serial.Write("?AI 1_");
             }
-            
+
+            Vntc = Convert.ToDouble(VntcRaw) / 1000;
+            Vrfixed = Vin - Vntc;
+            Itot = Vrfixed / Rfixed;
+            Iimp = Vntc / Rimp;
+            Intc = Itot - Iimp;
+            Rntc = Vntc / Intc;
+
+            lnR = Math.Log(Rntc);
+
+            Tkelvin = 1.0 / (A + B * lnR + C * Math.Pow(lnR, 3));
+            Tcelsius = Tkelvin - 273.15;
+
+            if (label11.InvokeRequired)
+            {
+                label11.Invoke(new Action(() =>
+                {
+                  label11.Text = Tcelsius.ToString("F1");
+                }
+                ));
+            }
+            else
+            {
+                label11.Text = Tcelsius.ToString("F1");
+            }
         }
 
-        //Serial datareceived event
+        //Serial datareceived eventhandler
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
 
@@ -284,7 +324,7 @@ namespace PeltierController
             dataStripped = dataReceived.Substring(3);
 
             //Convert stripped data string to int
-            if (int.TryParse(dataStripped, out Vntc))
+            if (int.TryParse(dataStripped, out VntcRaw))
             {
             }
             else
@@ -293,8 +333,19 @@ namespace PeltierController
 
             Debug.WriteLine("Received: " + dataReceived);
             Debug.WriteLine("Stripped string: " + dataStripped);
-            Debug.Write("Vntc (int): " + Vntc);
+            Debug.WriteLine("VntcRaw: " + VntcRaw);
+            Debug.WriteLine("Vntc: " + Vntc);
+
+            Debug.WriteLine("Vfixed: " + Vrfixed);
+            Debug.WriteLine("Intc: " + Intc);
+            Debug.WriteLine("Rntc: " + Rntc);
+
+            Debug.WriteLine("Tkelvin: " + Tkelvin);
+            Debug.WriteLine("Tcelsius: " + Tcelsius);
+
         }
+
+
     }
 
 }
