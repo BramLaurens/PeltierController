@@ -1,5 +1,8 @@
+using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
+using System.Threading;
+
 
 
 //Title: Peltier controller GUI
@@ -18,9 +21,15 @@ namespace PeltierController
         //Class variables
         static int coolingStatus = 0; //0 = off, 1 = heating, 2 = cooling
         static bool peltierStatus; //False = turned off, true = power on
+        string dataReceived;
+        string dataStripped;
+        int Vntc;
 
         //Make a new serialport object
         private SerialPort Serial = new SerialPort();
+
+        //Make a new timer
+        private static System.Threading.Timer _timer;
 
         public Form1()
         {
@@ -50,6 +59,9 @@ namespace PeltierController
         {
             //Call the update COM ports function upon loading the window
             UpdateCOMportList();
+
+            //New timer object
+            _timer = new System.Threading.Timer(Callback, null, 0, 1000);
 
             label2.Text = "Peltier Disabled";
             label6.Text = "Not enabled";
@@ -113,6 +125,7 @@ namespace PeltierController
                 Serial.StopBits = StopBits.One;
                 Serial.Handshake = Handshake.None;
                 Serial.WriteTimeout = 3000;
+                Serial.DataReceived += SerialPort_DataReceived;
 
                 //Open the serial port
                 try
@@ -238,6 +251,7 @@ namespace PeltierController
         //Cooling button click event
         private void button6_Click(object sender, EventArgs e)
         {
+            Console.WriteLine($"Function executed at {DateTime.Now}");
             coolingStatus = 2; //Cooling
             label6.Text = "Cooling";
         }
@@ -248,5 +262,39 @@ namespace PeltierController
             coolingStatus = 1; //Heating
             label6.Text = "Heating";
         }
+
+        //Timer callback threat for reading temperature. Runs every second in background
+        private void Callback(object state)
+        {
+            Debug.WriteLine($"Function executed at {DateTime.Now}");
+
+            if (Serial.IsOpen) {
+                Serial.Write("?AI 1_");
+            }
+            
+        }
+
+        //Serial datareceived event
+        private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+
+            //Read incoming data and parse it (strip first ID characters)
+            SerialPort sp = (SerialPort)sender;
+            dataReceived = sp.ReadExisting(); // Read incoming data
+            dataStripped = dataReceived.Substring(3);
+
+            //Convert stripped data string to int
+            if (int.TryParse(dataStripped, out Vntc))
+            {
+            }
+            else
+            {
+            }
+
+            Debug.WriteLine("Received: " + dataReceived);
+            Debug.WriteLine("Stripped string: " + dataStripped);
+            Debug.Write("Vntc (int): " + Vntc);
+        }
     }
+
 }
