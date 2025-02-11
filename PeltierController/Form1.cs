@@ -43,8 +43,8 @@ namespace PeltierController
 
         //PID variables
         double Kp = 10;
-        double Ki = 0.0;
-        double Kd = 1;
+        double Ki = 0.1;
+        double Kd = 0.2;
 
         double PID_Gain = 1;
 
@@ -57,6 +57,8 @@ namespace PeltierController
         double previousError;
 
         double PID_PWMcorrection;
+
+        int PWM_PID_Out;
 
         bool PID_enabled = false;
 
@@ -105,7 +107,7 @@ namespace PeltierController
             //New timer object
             _timer = new System.Threading.Timer(Callback, null, 0, 1000);
 
-            label2.Text = "Peltier Disabled";
+            label2.Text = "Power Off";
             label6.Text = "Not enabled";
             label4.Text = "0";
 
@@ -330,12 +332,12 @@ namespace PeltierController
             if (Serial.IsOpen)
             {
                 Serial.Write("?AI 1_");
+                Thread.Sleep(100);
             }
 
 
             //Temperature calculations
-            //Vntc = Convert.ToDouble(VntcRaw) / 1000;
-            Vntc = 2.5;
+            Vntc = Convert.ToDouble(VntcRaw) / 1000;
             Vrfixed = Vin - Vntc;
             Itot = Vrfixed / Rfixed;
             Iimp = Vntc / Rimp;
@@ -362,7 +364,7 @@ namespace PeltierController
             }
 
             //PID control
-            if(PID_enabled == true)
+            if (PID_enabled == true)
             {
                 error = Setpoint - Tcelsius;
                 dT = Convert.ToDouble(PID_timer.ElapsedMilliseconds) / 1000;
@@ -387,7 +389,59 @@ namespace PeltierController
                     PID_PWMcorrection = -50;
                 }
 
-                int PWM_PID_Out = Convert.ToInt32(PID_PWMcorrection);
+                try
+                {
+                    PWM_PID_Out = Convert.ToInt32(PID_PWMcorrection) * 10;
+                }
+                catch
+                {
+                }
+
+                //Update labels (needs invoke because seperate thread
+                if (label4.InvokeRequired)
+                {
+                    label4.Invoke(new Action(() =>
+                    {
+                        label4.Text = PWM_PID_Out.ToString();
+                    }
+                    ));
+                }
+                else
+                {
+                    label4.Text = PWM_PID_Out.ToString();
+                }
+
+                if (PWM_PID_Out > 0)
+                {
+                    if (label6.InvokeRequired)
+                    {
+                        label6.Invoke(new Action(() =>
+                        {
+                            label6.Text = "Cooling";
+                        }
+                        ));
+                    }
+                    else
+                    {
+                        label6.Text = "Cooling";
+                    }
+                }
+
+                if (PWM_PID_Out < 0)
+                {
+                    if (label6.InvokeRequired)
+                    {
+                        label6.Invoke(new Action(() =>
+                        {
+                            label6.Text = "Heating";
+                        }
+                        ));
+                    }
+                    else
+                    {
+                        label6.Text = "Heating";
+                    }
+                }
 
                 if (Serial.IsOpen)
                 {
@@ -395,10 +449,13 @@ namespace PeltierController
                     string command = $"!G 1 {PWM_PID_Out}_";
                     //Disable watchdog
                     Serial.Write("^RWD 0_");
+
                     //Send formatted command
                     Serial.Write(command);
 
+
                 }
+
 
                 Debug.WriteLine("");
                 Debug.WriteLine("Tcelsius: " + Tcelsius);
@@ -406,9 +463,10 @@ namespace PeltierController
                 Debug.WriteLine("PID Enabled: " + PID_enabled);
                 Debug.WriteLine("Error: " + error);
                 Debug.WriteLine("dT: " + dT);
-                Debug.WriteLine("PID_PWM_out: " + PID_PWMcorrection);
+                Debug.WriteLine("PID_PWMcorrection [Double]:" + PID_PWMcorrection);
+                Debug.WriteLine("PID_PWM_out: [INT] " + PWM_PID_Out);
             }
-            
+
 
         }
 
@@ -416,9 +474,18 @@ namespace PeltierController
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
 
-            //Read incoming data and parse it (strip first ID characters)
+            //Read incoming data and parse it
             SerialPort sp = (SerialPort)sender;
             dataReceived = sp.ReadExisting(); // Read incoming data
+
+
+            //Check is the received data is a valid temperature datapoint,should not contain anything else then A=
+            if (dataReceived.Contains("!G 1") || dataReceived.Contains("+"))
+            {
+                return;
+            }
+
+            //Strip first three identifying characters
             dataStripped = dataReceived.Substring(3);
 
             //Convert stripped data string to int
@@ -462,6 +529,7 @@ namespace PeltierController
                 return;
             }
 
+            label2.Text = "Power On (AUTO)";
             PID_enabled = true;
             Setpoint = SetpointInput;
             PID_timer.Start();
@@ -486,12 +554,17 @@ namespace PeltierController
 
         private void button9_Click(object sender, EventArgs e)
         {
-            button1.Enabled = false;    
+            button1.Enabled = false;
             button6.Enabled = false;
             button7.Enabled = false;
             button4.Enabled = false;
 
             button5.Enabled = true;
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

@@ -43,20 +43,20 @@
             label6 = new Label();
             label5 = new Label();
             groupBox2 = new GroupBox();
-            button7 = new Button();
-            button6 = new Button();
+            button9 = new Button();
+            button8 = new Button();
             groupBox5 = new GroupBox();
             label8 = new Label();
             textBox2 = new TextBox();
             button5 = new Button();
             groupBox4 = new GroupBox();
+            button7 = new Button();
             label7 = new Label();
             textBox1 = new TextBox();
+            button6 = new Button();
             button4 = new Button();
             groupBox3 = new GroupBox();
             label9 = new Label();
-            button8 = new Button();
-            button9 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox5.SuspendLayout();
@@ -83,6 +83,7 @@
             label2.Size = new Size(91, 38);
             label2.TabIndex = 1;
             label2.Text = "label2";
+            label2.Click += label2_Click;
             // 
             // button1
             // 
@@ -218,27 +219,27 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Module controls";
             // 
-            // button7
+            // button9
             // 
-            button7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button7.Location = new Point(306, 30);
-            button7.Name = "button7";
-            button7.Size = new Size(94, 43);
-            button7.TabIndex = 8;
-            button7.Text = "Heating";
-            button7.UseVisualStyleBackColor = true;
-            button7.Click += button7_Click;
+            button9.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button9.Location = new Point(253, 30);
+            button9.Name = "button9";
+            button9.Size = new Size(187, 43);
+            button9.TabIndex = 10;
+            button9.Text = "Automatic control";
+            button9.UseVisualStyleBackColor = true;
+            button9.Click += button9_Click;
             // 
-            // button6
+            // button8
             // 
-            button6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button6.Location = new Point(206, 30);
-            button6.Name = "button6";
-            button6.Size = new Size(94, 43);
-            button6.TabIndex = 7;
-            button6.Text = "Cooling";
-            button6.UseVisualStyleBackColor = true;
-            button6.Click += button6_Click;
+            button8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button8.Location = new Point(17, 30);
+            button8.Name = "button8";
+            button8.Size = new Size(187, 43);
+            button8.TabIndex = 9;
+            button8.Text = "Manual control";
+            button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
             // 
             // groupBox5
             // 
@@ -297,6 +298,17 @@
             groupBox4.Text = "Manual PWM Control";
             groupBox4.Enter += groupBox4_Enter;
             // 
+            // button7
+            // 
+            button7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button7.Location = new Point(306, 30);
+            button7.Name = "button7";
+            button7.Size = new Size(94, 43);
+            button7.TabIndex = 8;
+            button7.Text = "Heating";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -312,6 +324,17 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(94, 31);
             textBox1.TabIndex = 5;
+            // 
+            // button6
+            // 
+            button6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button6.Location = new Point(206, 30);
+            button6.Name = "button6";
+            button6.Size = new Size(94, 43);
+            button6.TabIndex = 7;
+            button6.Text = "Cooling";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
             // button4
             // 
@@ -346,28 +369,6 @@
             label9.Size = new Size(295, 21);
             label9.TabIndex = 11;
             label9.Text = "Bram Laurens @ HU 2025 [Open Source]";
-            // 
-            // button8
-            // 
-            button8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button8.Location = new Point(17, 30);
-            button8.Name = "button8";
-            button8.Size = new Size(187, 43);
-            button8.TabIndex = 9;
-            button8.Text = "Manual control";
-            button8.UseVisualStyleBackColor = true;
-            button8.Click += button8_Click;
-            // 
-            // button9
-            // 
-            button9.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button9.Location = new Point(253, 30);
-            button9.Name = "button9";
-            button9.Size = new Size(187, 43);
-            button9.TabIndex = 10;
-            button9.Text = "Automatic control";
-            button9.UseVisualStyleBackColor = true;
-            button9.Click += button9_Click;
             // 
             // Form1
             // 
