@@ -380,7 +380,7 @@
             label12.Name = "label12";
             label12.Size = new Size(51, 21);
             label12.TabIndex = 12;
-            label12.Text = "v1.0.3";
+            label12.Text = "v1.0.4";
             // 
             // Form1
             // 
