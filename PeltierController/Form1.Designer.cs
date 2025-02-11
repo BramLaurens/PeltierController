@@ -58,6 +58,8 @@
             groupBox3 = new GroupBox();
             label9 = new Label();
             label12 = new Label();
+            comboBox2 = new ComboBox();
+            label13 = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox5.SuspendLayout();
@@ -125,6 +127,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(182, 33);
             comboBox1.TabIndex = 5;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // button2
             // 
@@ -365,7 +368,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(12, 654);
+            label9.Location = new Point(12, 697);
             label9.Name = "label9";
             label9.Size = new Size(295, 21);
             label9.TabIndex = 11;
@@ -376,18 +379,40 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label12.Location = new Point(468, 654);
+            label12.Location = new Point(468, 697);
             label12.Name = "label12";
             label12.Size = new Size(51, 21);
             label12.TabIndex = 12;
-            label12.Text = "v1.0.4";
+            label12.Text = "v1.0.5";
+            // 
+            // comboBox2
+            // 
+            comboBox2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(423, 657);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(96, 33);
+            comboBox2.TabIndex = 8;
+            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(347, 660);
+            label13.Name = "label13";
+            label13.Size = new Size(65, 25);
+            label13.TabIndex = 8;
+            label13.Text = "Theme";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(531, 684);
+            BackColor = SystemColors.Control;
+            ClientSize = new Size(531, 729);
+            Controls.Add(label13);
             Controls.Add(label12);
+            Controls.Add(comboBox2);
             Controls.Add(label9);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
@@ -438,5 +463,7 @@
         private Button button9;
         private Button button8;
         private Label label12;
+        private ComboBox comboBox2;
+        private Label label13;
     }
 }
