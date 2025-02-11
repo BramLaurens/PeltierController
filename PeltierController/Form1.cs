@@ -120,6 +120,9 @@ namespace PeltierController
             button9.Enabled = false;
 
             PID_timer = new Stopwatch();
+
+            comboBox2.Items.Add("Dark");
+            comboBox2.Items.Add("Light");
         }
 
         //Reset peltier button click event
@@ -570,6 +573,91 @@ namespace PeltierController
         private void label9_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox2.Text == "Dark")
+            {
+                groupBox1.ForeColor = ColorTranslator.FromHtml("#FBF8EF");
+                groupBox2.ForeColor = ColorTranslator.FromHtml("#FBF8EF");
+                groupBox3.ForeColor = ColorTranslator.FromHtml("#FBF8EF");
+                groupBox4.ForeColor = ColorTranslator.FromHtml("#FBF8EF");
+
+                button1.ForeColor = SystemColors.ControlText;
+                button2.ForeColor = SystemColors.ControlText;
+                button3.ForeColor = SystemColors.ControlText;
+                button4.ForeColor = SystemColors.ControlText;
+                button5.ForeColor = SystemColors.ControlText;
+                button6.ForeColor = SystemColors.ControlText;
+                button7.ForeColor = SystemColors.ControlText;
+                button8.ForeColor = SystemColors.ControlText;
+                button9.ForeColor = SystemColors.ControlText;
+
+                label1.ForeColor = ColorTranslator.FromHtml("#FBF8EF");
+                label2.ForeColor = ColorTranslator.FromHtml("#FBF8EF");
+                label3.ForeColor = ColorTranslator.FromHtml("#FBF8EF");
+                label4.ForeColor = ColorTranslator.FromHtml("#FBF8EF");
+                label5.ForeColor = ColorTranslator.FromHtml("#FBF8EF");
+                label6.ForeColor = ColorTranslator.FromHtml("#FBF8EF");
+                label7.ForeColor = ColorTranslator.FromHtml("#FBF8EF");
+                label8.ForeColor = ColorTranslator.FromHtml("#FBF8EF");
+                label9.ForeColor = ColorTranslator.FromHtml("#FBF8EF");
+                label10.ForeColor = ColorTranslator.FromHtml("#FBF8EF");
+                label11.ForeColor = ColorTranslator.FromHtml("#FBF8EF");
+                label12.ForeColor = ColorTranslator.FromHtml("#FBF8EF");
+                label13.ForeColor = ColorTranslator.FromHtml("#FBF8EF");
+
+                button1.BackColor = ColorTranslator.FromHtml("#C9E6F0");
+                button2.BackColor = ColorTranslator.FromHtml("#C9E6F0");
+                button3.BackColor = ColorTranslator.FromHtml("#C9E6F0");
+                button4.BackColor = ColorTranslator.FromHtml("#C9E6F0");
+                button5.BackColor = ColorTranslator.FromHtml("#C9E6F0");
+                button6.BackColor = ColorTranslator.FromHtml("#C9E6F0");
+                button7.BackColor = ColorTranslator.FromHtml("#C9E6F0");
+                button8.BackColor = ColorTranslator.FromHtml("#C9E6F0");
+                button9.BackColor = ColorTranslator.FromHtml("#C9E6F0");
+
+                this.BackColor = ColorTranslator.FromHtml("#23486A");
+            }
+
+            if (comboBox2.Text == "Light")
+            {
+                groupBox1.ForeColor = SystemColors.ControlText;
+                groupBox2.ForeColor = SystemColors.ControlText;
+                groupBox3.ForeColor = SystemColors.ControlText;
+                groupBox4.ForeColor = SystemColors.ControlText;
+
+                label1.ForeColor = SystemColors.ControlText;
+                label2.ForeColor = SystemColors.ControlText;
+                label3.ForeColor = SystemColors.ControlText;
+                label4.ForeColor = SystemColors.ControlText;
+                label5.ForeColor = SystemColors.ControlText;
+                label6.ForeColor = SystemColors.ControlText;
+                label7.ForeColor = SystemColors.ControlText;
+                label8.ForeColor = SystemColors.ControlText;
+                label9.ForeColor = SystemColors.ControlText;
+                label10.ForeColor = SystemColors.ControlText;
+                label11.ForeColor = SystemColors.ControlText;
+                label12.ForeColor = SystemColors.ControlText;
+                label13.ForeColor = SystemColors.ControlText;
+
+                button1.BackColor = SystemColors.Control;
+                button2.BackColor = SystemColors.Control;
+                button3.BackColor = SystemColors.Control;
+                button4.BackColor = SystemColors.Control;
+                button5.BackColor = SystemColors.Control;
+                button6.BackColor = SystemColors.Control;
+                button7.BackColor = SystemColors.Control;
+                button8.BackColor = SystemColors.Control;
+                button9.BackColor = SystemColors.Control;
+                this.BackColor = SystemColors.Control;
+            }
         }
     }
 
